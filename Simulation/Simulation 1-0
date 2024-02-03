@@ -1,1 +1,42 @@
+//https://www.codetree.ai/missions/2/problems/best-place-of-33/submissions
 
+#include <iostream>
+#define MAX 20
+using namespace std;
+
+int N;
+int board[MAX][MAX];
+
+int sum(int i , int j){
+    int num = 0;
+
+    for(int x = i; x < i+3 ; x++){
+        for(int y = j ; y < j+3 ; y++){
+            num += board[x][y];
+        }
+    }
+
+    return num;
+}
+ 
+int main() {
+    cin>>N;
+
+    for(int i = 0 ; i < N ; i++){
+        for(int j = 0 ; j < N ; j++){
+            cin>>board[i][j];            
+        }
+    }
+
+    int mx = 0;
+
+    for(int i = 0 ; i < N-2 ; i++){
+        for(int j = 0 ; j < N-2; j++){
+            
+            mx = max(sum(i, j), mx);
+
+        }
+    }
+    cout<<mx;
+
+}
