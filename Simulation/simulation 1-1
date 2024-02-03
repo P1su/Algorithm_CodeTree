@@ -1,0 +1,68 @@
+//https://www.codetree.ai/missions/2/problems/number-of-happy-sequence/discussions
+#include <iostream>
+#define MAX 101
+using namespace std;
+
+int board[MAX][MAX];
+
+int sum(int x, int y){
+    
+}
+
+int main() {
+    int n, m; 
+    cin>>n>>m;
+
+    for(int i = 0 ; i < n ; i++){
+        for(int j = 0 ; j < n ; j++){
+            cin>>board[i][j];
+        }
+    }
+
+    int cnt, chk, ans = 0;
+
+    for(int i = 0 ; i < n ; i++){
+        cnt = 0 ;
+        chk = board[i][0];
+
+        for(int j = 0 ; j < n ; j++){
+            if(board[i][j] == chk){
+                cnt++;
+
+            }else{
+                cnt = 1;
+                chk = board[i][j];
+            }
+
+            if(cnt == m){
+                ans++;
+                break;
+            }
+
+        }
+
+    }
+
+    for(int i = 0 ; i < n ; i++){
+        cnt = 0 ;
+        chk = board[0][i];
+
+        for(int j = 0 ; j < n ; j++){
+            if(board[j][i] == chk){
+                cnt++;
+
+            }else{
+                cnt = 1;
+                chk = board[j][i];
+            }
+
+            if(cnt == m){
+                ans++;
+                break;
+            }
+
+        }
+
+    }
+    cout<<ans;
+}
