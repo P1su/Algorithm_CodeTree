@@ -1,0 +1,49 @@
+//https://www.codetree.ai/missions/2/problems/gold-mining/description
+#include <iostream>
+#define MAX 21
+using namespace std;
+
+int n, m;
+int board [MAX][MAX];
+
+int cost(int k){
+    return k*k + (k+1)*(k+1);
+}
+
+int gold(int i ,int j , int k){
+    int num = 0;
+    for(int r = 0 ; r < n ; r++){
+        for(int c = 0 ;c < n ;c++){
+            if(abs(r-i) + abs(c-j) <= k){
+                num += board[r][c];
+            }
+        }
+    }
+
+    return num;
+}
+
+int main() {
+    int mx = 0;
+    cin>>n>>m;
+
+    for(int i = 0 ; i < n ; i++){
+        for(int j = 0 ; j < n ;j++){
+            cin>>board[i][j];
+        }
+    }
+
+    for(int i = 0 ; i < n ; i++){
+        for(int j = 0 ; j < n ; j++){
+            for(int k = 0 ; k <= 2 * (n-1) ; k++){
+                int goldNum = gold(i,j,k); 
+
+                if(goldNum * m >= cost(k)){
+                    mx = max(mx, goldNum);
+                }
+            }
+        }
+    }
+    
+    cout<<mx;
+}
